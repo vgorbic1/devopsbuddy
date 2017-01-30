@@ -1,34 +1,33 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en" xmlns:th="html://www.thymeleaf.org">
 <head>
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+<title>DevOps Buddy</title>
+<link th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
 	rel="stylesheet" />
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
 
-<div class="jumbotron text-center">
-	<h1>Header</h1>
-	<p class="lead">Something</p>
-</div>
+	<div class="jumbotron text-center">
+		<h1>Header</h1>
+		<p class="lead">Something</p>
+	</div>
 
-<div class="row">
-	<div class="col-md-6">
-		<div class="well">
-			<h2 class="text-center">Yes</h2>
-			<a class="btn btn-primary btn-lg btn-block">yes</a>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="well">
+				<h2 class="text-center">Yes</h2>
+				<a class="btn btn-primary btn-lg btn-block">yes</a>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="well">
+				<h2 class="text-center">No</h2>
+				<a class="btn btn-success btn-lg btn-block">No</a>
+			</div>
 		</div>
 	</div>
-	<div class="col-md-6">
-		<div class="well">
-			<h2 class="text-center">No</h2>
-			<a class="btn btn-success btn-lg btn-block">No</a>
-		</div>
-	</div>
-</div>
-
+<script th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
 </body>
 </html>
