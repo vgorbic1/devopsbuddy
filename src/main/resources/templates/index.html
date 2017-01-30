@@ -1,33 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="html://www.thymeleaf.org">
-<head>
-<title>DevOps Buddy</title>
-<link th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
-	rel="stylesheet" />
-<link th:href="@{/css/style.css}" rel="stylesheet" />
-</head>
+<head th:replace="common/header :: common-header" />
+
 <body>
-
-	<div class="jumbotron text-center">
-		<h1>Header</h1>
-		<p class="lead">Something</p>
-	</div>
-
-	<div class="row">
-		<div class="col-md-6">
-			<div class="well">
-				<h2 class="text-center">Yes</h2>
-				<a class="btn btn-primary btn-lg btn-block">yes</a>
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="well">
-				<h2 class="text-center">No</h2>
-				<a class="btn btn-success btn-lg btn-block">No</a>
-			</div>
+	<div th:replace="common/navbar :: common-navbar" />
+	<div class="container">
+		<div class="starter-temlate">
+			<h1>Bootstap starter template</h1>
+			<p class="lead">Document</p>
 		</div>
 	</div>
-<script th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
+	<div th:replace="common/header :: before-body-scripts" />
 </body>
 </html>
