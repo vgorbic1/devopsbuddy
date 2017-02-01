@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class I18nService {
 	
+	/** The application logger */
+	private static final org.slf4j.Logger LOG = org.slf4j.LoggerFactory.getLogger(I18nService.class);
+	
 	@Autowired
 	private MessageSource messageSource;
 
@@ -21,12 +24,13 @@ public class I18nService {
 	 *            The key to the messages resource file
 	 **/
 	public String getMessage(String messageId) {
+		LOG.info("Returning i18n text for messageId {}", messageId);
 		Locale locale = LocaleContextHolder.getLocale();
 		return getMessage(messageId, locale);
 	}
 
 	/**
-	 * Returns a messsage for the given message id and locale
+	 * Returns a message for the given message id and locale
 	 * 
 	 * @param messageId
 	 *            The key to the messages resource file
