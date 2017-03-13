@@ -11,6 +11,18 @@ public class UserRole implements Serializable {
 	/** The Serial Version UID for Serializable Classes **/
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	private User user;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "role_id")
+	private Role role;
+
 	public UserRole() {
 
 	}
@@ -19,17 +31,7 @@ public class UserRole implements Serializable {
 		this.user = user;
 		this.role = role;
 	}
-
-	@Id
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private User user;
-
-	@Id
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "role_id")
-	private Role role;
-
+	
 	public User getUser() {
 		return user;
 	}
@@ -46,26 +48,34 @@ public class UserRole implements Serializable {
 		this.role = role;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
+	public long getId() {
+		return id;
+	}
 
-		UserRole userRole = (UserRole) o;
-
-		if (!user.equals(userRole.user))
-			return false;
-		return role.equals(userRole.role);
-
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	@Override
 	public int hashCode() {
-		int result = user.hashCode();
-		result = 31 * result + role.hashCode();
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserRole other = (UserRole) obj;
+		if (id != other.id)
+			return false;
+		return true;
 	}
 
 }

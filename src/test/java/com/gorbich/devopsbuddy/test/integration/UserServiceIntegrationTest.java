@@ -6,7 +6,7 @@ import com.gorbich.devopsbuddy.backend.persistence.domain.backend.UserRole;
 import com.gorbich.devopsbuddy.backend.service.UserService;
 import com.gorbich.devopsbuddy.enums.PlansEnum;
 import com.gorbich.devopsbuddy.enums.RolesEnum;
-import com.gorbich.devopsbuddy.utils.UsersUtils;
+import com.gorbich.devopsbuddy.utils.UserUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +28,7 @@ public class UserServiceIntegrationTest {
     public void testCreateNewUser() throws Exception {
 
         Set<UserRole> userRoles = new HashSet<>();
-        User basicUser = UsersUtils.createBasicUser();
+        User basicUser = UserUtils.createBasicUser();
         userRoles.add(new UserRole(basicUser, new Role(RolesEnum.BASIC)));
 
         User user = userService.createUser(basicUser, PlansEnum.BASIC, userRoles);
