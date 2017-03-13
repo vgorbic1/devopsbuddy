@@ -21,7 +21,9 @@ public class Plan implements Serializable {
     public Plan() {   	
     }
 
-    public Plan(PlansEnum plansEnum) {   	
+    public Plan(PlansEnum plansEnum) {
+        this.id = plansEnum.getId();
+        this.name = plansEnum.getPlanName();
     }
     
 	public int getId() {

@@ -26,6 +26,7 @@ import junit.framework.Assert;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class RepositoriesIntegrationTest {
+	
 	@Autowired
     private PlanRepository planRepository;
 
@@ -52,10 +53,8 @@ public class RepositoriesIntegrationTest {
 
     @Test
     public void testCreateNewRole() throws Exception {
-
         Role userRole  = createRole(RolesEnum.BASIC);
         roleRepository.save(userRole);
-
         Role retrievedRole = roleRepository.findOne(RolesEnum.BASIC.getId());
         Assert.assertNotNull(retrievedRole);
     }

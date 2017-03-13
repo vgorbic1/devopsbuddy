@@ -33,10 +33,14 @@ public class DevopsbuddyApplication {
 	
 	public void run(String... args) throws Exception {
 		User user = UsersUtils.createBasicUser();
+		
 		Set<UserRole> userRoles = new HashSet<>();
 		userRoles.add(new UserRole(user, new Role(RolesEnum.BASIC)));
+		
 		LOG.debug("Creating user with username {}", user.getUsername());
+		
 		userService.createUser(user, PlansEnum.PRO, userRoles);
+		
 		LOG.info("User {} created", user.getUsername());
 	}
 }
