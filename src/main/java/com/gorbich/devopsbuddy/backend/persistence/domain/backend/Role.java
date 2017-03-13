@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.gorbich.devopsbuddy.enums.RolesEnum;
+
 @Entity
 public class Role implements Serializable {
 
@@ -21,6 +23,11 @@ public class Role implements Serializable {
 
 	public Role() {
 
+	}
+	
+	public Role(RolesEnum rolesEnum) {
+		this.id = rolesEnum.getId();
+		this.name = rolesEnum.getRoleName();
 	}
 
 	public int getId() {
