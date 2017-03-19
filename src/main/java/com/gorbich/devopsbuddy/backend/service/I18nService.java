@@ -1,4 +1,4 @@
-package com.gorbich.devopsbuddy.web.i18n;
+package com.gorbich.devopsbuddy.backend.service;
 
 import java.util.Locale;
 

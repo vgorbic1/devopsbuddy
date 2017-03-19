@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.gorbich.devopsbuddy.web.i18n.I18nService;
+import com.gorbich.devopsbuddy.backend.service.I18nService;
 
 import junit.framework.Assert;
 
