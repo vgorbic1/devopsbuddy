@@ -16,6 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,9 +44,9 @@ public class SignupController {
 
 	@Autowired
 	private UserService userService;
-	
-    @Autowired
-    private S3Service s3Service;
+
+	@Autowired
+	private S3Service s3Service;
 
 	/** The application logger */
 	private static final Logger LOG = LoggerFactory.getLogger(SignupController.class);
@@ -118,18 +119,19 @@ public class SignupController {
 		LOG.debug("Transforming user payload into User domain object");
 		User user = UserUtils.fromWebUserToDomainUser(payload);
 
-		// Stores the profile image on Amazon S3 and stores the URL in the user's record
-        if (file != null && !file.isEmpty()) {
+		// Stores the profile image on Amazon S3 and stores the URL in the
+		// user's record
+		if (file != null && !file.isEmpty()) {
 
-            String profileImageUrl = s3Service.storeProfileImage(file, payload.getUsername());
-            if (profileImageUrl != null) {
-                user.setProfileImageUrl(profileImageUrl);
-            } else {
-                LOG.warn("There was a problem uploading the profile image to S3. The user's profile will" +
-                        " be created without the image");
-            }
+			String profileImageUrl = s3Service.storeProfileImage(file, payload.getUsername());
+			if (profileImageUrl != null) {
+				user.setProfileImageUrl(profileImageUrl);
+			} else {
+				LOG.warn("There was a problem uploading the profile image to S3. The user's profile will"
+						+ " be created without the image");
+			}
 
-        }
+		}
 
 		// Sets the Plan and the Roles (depending on the chosen plan)
 		LOG.debug("Retrieving plan from the database");
@@ -151,6 +153,17 @@ public class SignupController {
 			registeredUser = userService.createUser(user, PlansEnum.BASIC, roles);
 		} else {
 			roles.add(new UserRole(user, new Role(RolesEnum.PRO)));
+
+			// Extra precaution in case the POST method is invoked
+			// programmatically
+			if (StringUtils.isEmpty(payload.getCardCode()) || StringUtils.isEmpty(payload.getCardNumber())
+					|| StringUtils.isEmpty(payload.getCardMonth()) || StringUtils.isEmpty(payload.getCardYear())) {
+				LOG.error("One or more credit card fields is null or empty. Returning error to the user");
+				model.addAttribute(SIGNED_UP_MESSAGE_KEY, "false");
+				model.addAttribute(ERROR_MESSAGE_KEY, "One of more credit card details is null or empty.");
+				return SUBSCRIPTION_VIEW_NAME;
+			}
+
 			registeredUser = userService.createUser(user, PlansEnum.PRO, roles);
 			LOG.debug(payload.toString());
 		}
