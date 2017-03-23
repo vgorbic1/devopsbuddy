@@ -101,7 +101,14 @@
 			<artifactId>commons-io</artifactId>
 			<version>LATEST</version>
 		</dependency>
-				
+
+		<!-- Stripe dependencies -->
+		<dependency>
+			<groupId>com.stripe</groupId>
+			<artifactId>stripe-java</artifactId>
+			<version>1.40.0</version>
+		</dependency>
+						
 		<dependency>
 			<groupId>uk.co.jemos.podam</groupId>
 			<artifactId>podam</artifactId>

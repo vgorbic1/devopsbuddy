@@ -132,7 +132,7 @@
                                name="phoneNumber" />
                     </div>
                     
-                    <div th:if="${#httpServletRequest.getParameter('planId') == #strings.toString(T(com.devopsbuddy.enums.PlansEnum).PRO.getId())}">
+                    <div th:if="${#httpServletRequest.getParameter('planId') == #strings.toString(T(com.gorbich.devopsbuddy.enums.PlansEnum).PRO.getId())}">
                         <div class="form-group">
                             <label for="cardNumber" th:text="#{signup.form.credit.card.number}"></label>
                             <input type="text" id="cardNumber" th:field="*{cardNumber}" class="form-control"/>
