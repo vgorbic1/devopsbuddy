@@ -22,9 +22,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/**
- * Created by tedonema on 08/05/2016.
- */
 @Service
 public class S3Service {
 

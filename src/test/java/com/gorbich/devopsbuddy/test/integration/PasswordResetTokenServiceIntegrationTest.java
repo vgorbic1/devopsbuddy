@@ -14,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-/**
- * Created by tedonema on 10/04/2016.
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = DevopsbuddyApplication.class)
 public class PasswordResetTokenServiceIntegrationTest extends AbstractServiceIntegrationTest {
